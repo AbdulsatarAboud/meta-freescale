@@ -12,6 +12,10 @@ PROVIDES += "u-boot u-boot-mfgtool"
 
 inherit uuu_bootloader_tag
 
+# CONFIG_EFI_CAPSULE_AUTHENTICATE needs cert-to-efi-sig-list from efitools,
+# and this layer has no efitools-native recipe, so disable it.
+SRC_URI += "file://disable-capsule-auth.cfg"
+
 # The UUU tag goes on the boot partition. For 8+, the boot partition image
 # is imx-boot, so disable UUU-tagging here
 UUU_BOOTLOADER:mx8-generic-bsp = ""
